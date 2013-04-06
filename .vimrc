@@ -21,6 +21,9 @@
 	Bundle 'ervandew/supertab'
 	Bundle 'evindor/vim-rusmode'
 	Bundle 'altercation/vim-colors-solarized'
+	Bundle 'UltiSnips'
+	Bundle 'mattn/zencoding-vim'
+	Bundle 'tpope/vim-fugitive'
 
 	set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
 
@@ -106,7 +109,16 @@
 	set softtabstop=4
 	set shiftwidth=4
 	set autoindent
+	set showmatch
+	set cursorline
 	set number
+
+	" Копируем из VIM в общий буфер (vim.gtk и macvim)
+	if has("unnamedplus")
+	  set clipboard=unnamedplus
+	elseif has("clipboard")
+	  set clipboard=unnamed
+	endif
 
 	nmap <Leader>n :set number! <cr>
 
@@ -132,6 +144,12 @@
         " Pressing ,v opens the .vimrc in a new tab
         nmap <leader>v :tabedit $MYVIMRC<CR>
 
+    " Переключение по сплитам
+        nmap <C-h> <C-W>h
+        nmap <C-j> <C-W>j
+        nmap <C-k> <C-W>k
+        nmap <C-l> <C-W>l
+
     " <Space> = <PageDown> Как в браузерах
         nmap <Space> <PageDown>zz
 
@@ -151,6 +169,7 @@
           autocmd! bufwritepost .vimrc source $MYVIMRC
         endif
 
-set background=dark
-let g:solarized_termcolors=256
-colorscheme solarized
+		set background=dark
+		set t_Co=256
+		let g:solarized_termcolors=256
+		colorscheme solarized

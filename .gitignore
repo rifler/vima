@@ -1,4 +1,5 @@
 .vim/Session.vim
 .vim/bundle/
 .vim/.NERDTreeBookmarks
+.vim/UltiSnips/
 *.swp
