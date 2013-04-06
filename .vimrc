@@ -111,6 +111,7 @@
 	set autoindent
 	set showmatch
 	set cursorline
+	set scrolloff=999
 	set number
 
 	" Копируем из VIM в общий буфер (vim.gtk и macvim)
