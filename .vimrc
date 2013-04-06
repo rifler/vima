@@ -18,6 +18,11 @@
 	Bundle 'tpope/vim-repeat'
 	Bundle 'kien/ctrlp.vim'
 	Bundle 'AutoClose'
+	Bundle 'ervandew/supertab'
+	Bundle 'evindor/vim-rusmode'
+	Bundle 'altercation/vim-colors-solarized'
+
+	set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
 
     filetype plugin indent on     " required!
 	syntax enable
@@ -42,6 +47,10 @@
 " Clear the search highlight in Normal mode
 		nnoremap <silent> <Esc><Esc> :nohlsearch<CR><Esc>
 
+" Ремапим русские символы
+	 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
+
+
     " Мапим ведущую клавишу на ,
     let mapleader = ","
 
@@ -56,6 +65,12 @@
 	" Shift+> и Shift+< в Visual Mode
 		vnoremap < <gv
 		vnoremap > >gv
+
+	" Удалить буфер
+		nmap <Leader>bd :bdelete<cr>
+
+	"Новый таб
+		nmap <Leader>tn :tabnew<cr>
 
     " Перемещение строк
         " переместить одну строку
@@ -135,3 +150,7 @@
         if has("autocmd")
           autocmd! bufwritepost .vimrc source $MYVIMRC
         endif
+
+set background=dark
+let g:solarized_termcolors=256
+colorscheme solarized
