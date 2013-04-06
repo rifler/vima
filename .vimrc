@@ -24,6 +24,11 @@
 	Bundle 'UltiSnips'
 	Bundle 'mattn/zencoding-vim'
 	Bundle 'tpope/vim-fugitive'
+	Bundle 'git://github.com/pangloss/vim-javascript.git'
+	Bundle 'git://github.com/itspriddle/vim-jquery.git'
+	Bundle 'git://github.com/kchmck/vim-coffee-script.git'
+	Bundle 'git://github.com/walm/jshint.vim.git'
+
 
 	set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
 
@@ -139,7 +144,6 @@
 	"unprintable chars
 	"
 	set list
-	set listchars=tab:\ \ ,trail:.
 
     " ,v
         " Pressing ,v opens the .vimrc in a new tab
@@ -174,3 +178,53 @@
 		set t_Co=256
 		let g:solarized_termcolors=256
 		colorscheme solarized
+
+
+    " Символ табуляции и конца строки
+        if has('multi_byte')
+            if version >= 700
+                set listchars=tab:▸\ ,trail:·,extends:❯,precedes:❮,nbsp:×
+            else
+                set listchars=tab:»\ ,trail:·,extends:>,precedes:<,nbsp:_
+            endif
+        endif
+
+    " Символ, который будет показан перед перенесенной строкой
+        if has("linebreak")
+              let &sbr = nr2char(8618).' '  " Show ↪ at the beginning of wrapped lines
+        endif
+
+
+    " Приводим в порядок status line
+
+        function! FileSize()
+            let bytes = getfsize(expand("%:p"))
+            if bytes <= 0
+                return ""
+            endif
+            if bytes < 1024
+                return bytes . "B"
+            else
+                return (bytes / 1024) . "K"
+            endif
+        endfunction
+
+        function! CurDir()
+            return expand('%:p:~')
+        endfunction
+
+        set laststatus=2
+        set statusline=\ 
+        set statusline+=%n:\                 " buffer number
+        set statusline+=%t                   " filename with full path
+        set statusline+=%m                   " modified flag
+        set statusline+=\ \ 
+        set statusline+=%{&paste?'[paste]\ ':''}
+        set statusline+=%{&fileencoding}
+        set statusline+=\ \ %Y               " type of file
+        set statusline+=\ %3.3(%c%)          " column number
+        set statusline+=\ \ %3.9(%l/%L%)     " line / total lines
+        "set statusline+=\ \ %2.3p%%          " percentage through file in lines
+        set statusline+=\ \ %{FileSize()}
+        set statusline+=%<                   " where truncate if line too long
+        set statusline+=\ \ CurDir:%{CurDir()}
