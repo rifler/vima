@@ -12,28 +12,28 @@
     "
     Bundle 'scrooloose/nerdtree'
     Bundle 'scrooloose/nerdcommenter'
-	Bundle 'mattn/webapi-vim'
-	Bundle 'mattn/gist-vim'
-	Bundle 'tpope/vim-surround'
-	Bundle 'tpope/vim-repeat'
-	Bundle 'kien/ctrlp.vim'
-	Bundle 'AutoClose'
-	Bundle 'ervandew/supertab'
-	Bundle 'evindor/vim-rusmode'
-	Bundle 'altercation/vim-colors-solarized'
-	Bundle 'UltiSnips'
-	Bundle 'mattn/zencoding-vim'
-	Bundle 'tpope/vim-fugitive'
-	Bundle 'git://github.com/pangloss/vim-javascript.git'
-	Bundle 'git://github.com/itspriddle/vim-jquery.git'
-	Bundle 'git://github.com/kchmck/vim-coffee-script.git'
-	Bundle 'git://github.com/walm/jshint.vim.git'
+    Bundle 'mattn/webapi-vim'
+    Bundle 'mattn/gist-vim'
+    Bundle 'tpope/vim-surround'
+    Bundle 'tpope/vim-repeat'
+    Bundle 'kien/ctrlp.vim'
+    Bundle 'AutoClose'
+    Bundle 'ervandew/supertab'
+    Bundle 'evindor/vim-rusmode'
+    Bundle 'altercation/vim-colors-solarized'
+    Bundle 'UltiSnips'
+    Bundle 'mattn/zencoding-vim'
+    Bundle 'tpope/vim-fugitive'
+    Bundle 'git://github.com/pangloss/vim-javascript.git'
+    Bundle 'git://github.com/itspriddle/vim-jquery.git'
+    Bundle 'git://github.com/kchmck/vim-coffee-script.git'
+    Bundle 'git://github.com/walm/jshint.vim.git'
 
 
-	set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
+    set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
 
     filetype plugin indent on     " required!
-	syntax enable
+    syntax enable
     "
     " Brief help
     " :BundleList          - list configured bundles
@@ -53,32 +53,36 @@
 
 " <Esc><Esc>
 " Clear the search highlight in Normal mode
-		nnoremap <silent> <Esc><Esc> :nohlsearch<CR><Esc>
+        nnoremap <silent> <Esc><Esc> :nohlsearch<CR><Esc>
 
 " Ремапим русские символы
-	 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
+     set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
 
 
     " Мапим ведущую клавишу на ,
     let mapleader = ","
+
+    " ,s
+        nnoremap <leader>s :%s//<left>
+        vnoremap <leader>s :s//<left>
 
     " ,p
     " Режим вставки извне, без него лютый реформат кода
     set pastetoggle=<LEADER>p
 
     " Переключение вкладок по tab
-    	nmap <Tab> gt
-		nmap <S-Tab> gT
+        nmap <Tab> gt
+        nmap <S-Tab> gT
 
-	" Shift+> и Shift+< в Visual Mode
-		vnoremap < <gv
-		vnoremap > >gv
+    " Shift+> и Shift+< в Visual Mode
+        vnoremap < <gv
+        vnoremap > >gv
 
-	" Удалить буфер
-		nmap <Leader>bd :bdelete<cr>
+    " Удалить буфер
+        nmap <Leader>bd :bdelete<cr>
 
-	"Новый таб
-		nmap <Leader>tn :tabnew<cr>
+    "Новый таб
+        nmap <Leader>tn :tabnew<cr>
 
     " Перемещение строк
         " переместить одну строку
@@ -107,43 +111,52 @@
         let NERDTreeDirArrows=1 " Tells the NERD tree to use arrows instead of + ~ chars when displaying directories.
         let NERDTreeBookmarksFile= $HOME . '/.vim/.NERDTreeBookmarks'
 
-	set encoding=utf-8
-	set wrap
-	set linebreak
-	set tabstop=4
-	set softtabstop=4
-	set shiftwidth=4
-	set autoindent
-	set showmatch
-	set cursorline
-	set scrolloff=999
-	set number
+    set encoding=utf-8
+    set wrap
+    set linebreak
+    set expandtab
+    set tabstop=4
+    set softtabstop=4
+    set shiftwidth=4
+    set autoindent
+    set smartindent
+    set showmatch
+    set cursorline
+    set scrolloff=999
+    set number
+    set wildmenu
+    set wildignore+=.hg,.git,.svn " Version control
+    set wildignore+=*.DS_Store    " OSX bullshit
+    set wildignore+=*.pyc         " Python byte code"
+    set title
+    set showcmd
+    set shortmess+=I
 
-	" Копируем из VIM в общий буфер (vim.gtk и macvim)
-	if has("unnamedplus")
-	  set clipboard=unnamedplus
-	elseif has("clipboard")
-	  set clipboard=unnamed
-	endif
+    " Копируем из VIM в общий буфер (vim.gtk и macvim)
+    if has("unnamedplus")
+      set clipboard=unnamedplus
+    elseif has("clipboard")
+      set clipboard=unnamed
+    endif
 
-	nmap <Leader>n :set number! <cr>
+    nmap <Leader>n :set number! <cr>
 
-	" hjkl в Insert mode зажав <Ctrl>
-	imap <C-h> <C-o>h
-	imap <C-j> <C-o>j
-	imap <C-k> <C-o>k
-	imap <C-l> <C-o>l
+    " hjkl в Insert mode зажав <Ctrl>
+    imap <C-h> <C-o>h
+    imap <C-j> <C-o>j
+    imap <C-k> <C-o>k
+    imap <C-l> <C-o>l
 
-	" В коммандном режиме разрешить прыгать в конец и начало строки,
-	" как в консоли
-	cnoremap <C-e> <end>
-	imap     <C-e> <c-o>$
-	cnoremap <C-a> <home>
-	imap     <C-a> <c-o>^
+    " В коммандном режиме разрешить прыгать в конец и начало строки,
+    " как в консоли
+    cnoremap <C-e> <end>
+    imap     <C-e> <c-o>$
+    cnoremap <C-a> <home>
+    imap     <C-a> <c-o>^
 
-	"unprintable chars
-	"
-	set list
+    "unprintable chars
+    "
+    set list
 
     " ,v
         " Pressing ,v opens the .vimrc in a new tab
@@ -174,10 +187,10 @@
           autocmd! bufwritepost .vimrc source $MYVIMRC
         endif
 
-		set background=dark
-		set t_Co=256
-		let g:solarized_termcolors=256
-		colorscheme solarized
+        set background=dark
+        set t_Co=256
+        let g:solarized_termcolors=256
+        colorscheme solarized
 
 
     " Символ табуляции и конца строки
@@ -228,3 +241,8 @@
         set statusline+=\ \ %{FileSize()}
         set statusline+=%<                   " where truncate if line too long
         set statusline+=\ \ CurDir:%{CurDir()}
+
+    " UltiSnips
+        let g:UltiSnipsExpandTrigger="<tab>"
+        let g:UltiSnipsJumpForwardTrigger="<tab>"
+        let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
